@@ -323,7 +323,8 @@ static const void *sop_useNotificationKey = &sop_useNotificationKey;
 
 #pragma mark - UI Main Thread
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+#elif TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 @interface UIView(SafeObjectProxy)
 @end
