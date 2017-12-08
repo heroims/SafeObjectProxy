@@ -1159,7 +1159,8 @@ int smartFunction(id target, SEL cmd, ...) {
     }
     
     if (type&SafeObjectProxyType_UIMainThread) {
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+#elif TARGET_OS_IPHONE
         [UIView sops_swizzleMethod:@selector(setNeedsLayout) withMethod:@selector(sop_setNeedsLayout) error:&error];
         LOG_Error
         [UIView sops_swizzleMethod:@selector(setNeedsDisplay) withMethod:@selector(sop_setNeedsDisplay) error:&error];
