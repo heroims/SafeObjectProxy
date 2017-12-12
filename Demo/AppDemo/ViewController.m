@@ -1,60 +1,45 @@
 //
 //  ViewController.m
-//  Demo
+//  AppDemo
 //
-//  Created by admin on 2017/12/8.
+//  Created by admin on 2017/12/12.
 //  Copyright © 2017年 admin. All rights reserved.
 //
 
 #import "ViewController.h"
 #import "SafeObjectProxy.h"
 #import "TestPoint.h"
-
-@interface SafeObjectProxy(Report)<SafeObjectReportProtocol>
-@end
-@implementation SafeObjectProxy(Report)
--(void)reportDefendCrashLog:(NSString *)log{
-    NSArray *array=[NSThread callStackSymbols];
-    NSLog(@"crash log:%@\n%@",log,array);
-}
-@end
-
-@protocol AAAA<NSObject>
+@interface ViewController ()
 +(void)aaaaaaa;
-+(void)bbbbbbb;
-
 @end
 
-@interface ViewController()<AAAA>
-@end
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+    
     [SafeObjectProxy startSafeObjectProxy];
     [SafeObjectProxy addSafeDanglingPointerClassNames:@[@"SSS"]];
 
     NSArray *arr=@[@""];
     arr[3];
     arr=[arr arrayByAddingObjectsFromArray:nil];
-
+    
     [self performSelector:@selector(ddddddd)];
     
     NSLog(@"1");
     TestPoint *a=[[TestPoint alloc] init];
     NSLog(@"2");
-    
-    [ViewController bbbbbbb];
-
+    [ViewController aaaaaaa];
     NSLog(@"3");
-    // Do any additional setup after loading the view.
+
 }
 
 
-- (void)setRepresentedObject:(id)representedObject {
-    [super setRepresentedObject:representedObject];
-
-    // Update the view, if already loaded.
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 
