@@ -18,6 +18,7 @@
 @property(nonatomic,readonly)NSInteger undellocedMaxCount;
 
 +(instancetype)shareInstance;
+-(void)addMethod:(SEL)aSelector isStaticMethod:(BOOL)isStaticMethod;
 
 @end
 
@@ -27,6 +28,7 @@
 @implementation SafeObjectRealProxy
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
+    [[SafeObjectProxy shareInstance] addMethod:aSelector isStaticMethod:NO];
     return [[SafeObjectProxy shareInstance] methodSignatureForSelector:aSelector];
 }
 
