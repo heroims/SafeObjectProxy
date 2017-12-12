@@ -290,7 +290,7 @@ static const void *sop_useNotificationKey = &sop_useNotificationKey;
     NSMethodSignature *signatrue = [self methodSignatureForSelector:aSelector];
     
 #if TARGET_OS_OSX
-    if (isStaticMethod&&!aBool) {//OSX上静态方法这个时机signatrue已经有值
+    if (isStaticMethod&&!aBool) {//OSX上静态方法这个时机signatrue已经有值随后第二遍获取会变没有值
         signatrue=nil;
     }
 #endif
