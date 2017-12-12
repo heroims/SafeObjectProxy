@@ -289,6 +289,12 @@ static const void *sop_useNotificationKey = &sop_useNotificationKey;
     BOOL aBool = [self respondsToSelector:aSelector];
     NSMethodSignature *signatrue = [self methodSignatureForSelector:aSelector];
     
+#if TARGET_OS_OSX
+    if (isStaticMethod&&!aBool) {//OSX上静态方法这个时机signatrue已经有值
+        signatrue=nil;
+    }
+#endif
+    
     if (!(aBool || signatrue)) {
         [[SafeObjectProxy shareInstance] addMethod:aSelector isStaticMethod:isStaticMethod];
         if (isStaticMethod) {
