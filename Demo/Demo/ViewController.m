@@ -20,8 +20,8 @@
 @end
 
 @protocol AAAA<NSObject>
+
 +(void)aaaaaaa;
-+(void)bbbbbbb;
 
 @end
 
@@ -44,7 +44,7 @@
     TestPoint *a=[[TestPoint alloc] init];
     NSLog(@"2");
     
-    [ViewController bbbbbbb];
+    [ViewController aaaaaaa];
 
     NSLog(@"3");
     // Do any additional setup after loading the view.
