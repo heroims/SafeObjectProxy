@@ -19,6 +19,7 @@
 
 +(instancetype)shareInstance;
 -(void)addMethod:(SEL)aSelector isStaticMethod:(BOOL)isStaticMethod;
+-(void)_reportDefendCrashLog:(NSString*)log;
 
 @end
 
@@ -29,6 +30,8 @@
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
     [[SafeObjectProxy shareInstance] addMethod:aSelector isStaticMethod:NO];
+    [[SafeObjectProxy shareInstance] _reportDefendCrashLog:[NSString stringWithFormat:@"dangling pointer run method  %@", NSStringFromSelector(aSelector)]];
+
     return [[SafeObjectProxy shareInstance] methodSignatureForSelector:aSelector];
 }
 
