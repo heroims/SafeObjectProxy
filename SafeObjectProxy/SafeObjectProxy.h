@@ -65,6 +65,7 @@ typedef enum SafeObjectProxyType{
 
 /**
  添加需要做野指针保护的类
+ 默认保护池最大值(允许不释放的对象最大数目)为100个
  
  @param classNames 受保护的类名数组
  */
