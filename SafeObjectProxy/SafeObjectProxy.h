@@ -24,9 +24,11 @@ typedef enum SafeObjectProxyType{
     SafeObjectProxyType_KVCUndefinedKey=1<<10,
     SafeObjectProxyType_KVCALL=(SafeObjectProxyType_KVCNormal|SafeObjectProxyType_KVCUndefinedKey),
     
+    SafeObjectProxyType_DanglingPointer=1<<11,
+
     SafeObjectProxyType_Normal=(SafeObjectProxyType_Array|SafeObjectProxyType_Dictionary|SafeObjectProxyType_String|SafeObjectProxyType_URL|SafeObjectProxyType_FileManager),
     
-    SafeObjectProxyType_ALL=(SafeObjectProxyType_UnrecognizedSelector|SafeObjectProxyType_Notification|SafeObjectProxyType_UIMainThread|SafeObjectProxyType_Array|SafeObjectProxyType_Dictionary|SafeObjectProxyType_String|SafeObjectProxyType_URL|SafeObjectProxyType_FileManager|SafeObjectProxyType_KVCALL),
+    SafeObjectProxyType_ALL=(SafeObjectProxyType_UnrecognizedSelector|SafeObjectProxyType_Notification|SafeObjectProxyType_UIMainThread|SafeObjectProxyType_Array|SafeObjectProxyType_Dictionary|SafeObjectProxyType_String|SafeObjectProxyType_URL|SafeObjectProxyType_FileManager|SafeObjectProxyType_KVCALL|SafeObjectProxyType_DanglingPointer),
     
     
 }SafeObjectProxyType;
@@ -46,18 +48,34 @@ typedef enum SafeObjectProxyType{
 
 @interface SafeObjectProxy :NSObject
 
-
 /**
  安保系统完全启动
  */
 +(void)startSafeObjectProxy;
 
-
 /**
  安保系统只启动制定模块
+
+ SafeObjectProxyType_DanglingPointer 开启野指针保护时
+ 需要使用addSafeDanglingPointerClassNames添加要保护的类名集合
 
  @param type 受保护模块
  */
 +(void)startSafeObjectProxyWithType:(SafeObjectProxyType)type;
+
+/**
+ 添加需要做野指针保护的类
+ 
+ @param classNames 受保护的类名数组
+ */
++(void)addSafeDanglingPointerClassNames:(NSArray<NSString*>*)classNames;
+
+/**
+ 添加需要做野指针保护的类
+ 
+ @param classNames 受保护的类名数组
+ @param undellocedMaxCount 保护池最大值(允许不释放的对象最大数目)
+ */
++(void)addSafeDanglingPointerClassNames:(NSArray<NSString*>*)classNames undellocedMaxCount:(NSInteger)undellocedMaxCount;
 
 @end

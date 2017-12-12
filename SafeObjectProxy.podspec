@@ -13,5 +13,3 @@ s.tvos.deployment_target = '9.0'
 s.source_files          = 'SafeObjectProxy/*.{h,m}'
 s.requires_arc          = true
 end
-
-

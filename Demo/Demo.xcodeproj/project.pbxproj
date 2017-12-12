@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8441F5041FDFE12C00EADD0C /* SafeDanglingPointer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8441F5021FDFE12B00EADD0C /* SafeDanglingPointer.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		84DD6F201FDA93CB00BB4663 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DD6F1F1FDA93CB00BB4663 /* AppDelegate.m */; };
 		84DD6F231FDA93CB00BB4663 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DD6F221FDA93CB00BB4663 /* ViewController.m */; };
 		84DD6F251FDA93CB00BB4663 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84DD6F241FDA93CB00BB4663 /* Assets.xcassets */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8441F5021FDFE12B00EADD0C /* SafeDanglingPointer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SafeDanglingPointer.mm; sourceTree = "<group>"; };
+		8441F5031FDFE12B00EADD0C /* SafeDanglingPointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeDanglingPointer.h; sourceTree = "<group>"; };
 		84DD6F1B1FDA93CB00BB4663 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DD6F1E1FDA93CB00BB4663 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		84DD6F1F1FDA93CB00BB4663 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 		84DD6F4E1FDA99B600BB4663 /* SafeObjectProxy */ = {
 			isa = PBXGroup;
 			children = (
+				8441F5031FDFE12B00EADD0C /* SafeDanglingPointer.h */,
+				8441F5021FDFE12B00EADD0C /* SafeDanglingPointer.mm */,
 				84DD6F501FDA99B600BB4663 /* SafeObjectProxy.h */,
 				84DD6F4F1FDA99B600BB4663 /* SafeObjectProxy.m */,
 			);
@@ -281,6 +286,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8441F5041FDFE12C00EADD0C /* SafeDanglingPointer.mm in Sources */,
 				84DD6F511FDA99B600BB4663 /* SafeObjectProxy.m in Sources */,
 				84DD6F231FDA93CB00BB4663 /* ViewController.m in Sources */,
 				84DD6F2B1FDA93CB00BB4663 /* main.m in Sources */,

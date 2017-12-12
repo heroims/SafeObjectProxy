@@ -15,8 +15,12 @@
 #import <objc/objc-class.h>
 #endif
 
+#import "SafeDanglingPointer.h"
 
-@interface SafeObjectProxy()
+@interface SafeObjectProxy(){
+    NSArray *_danglingPointerClassNames;
+    NSInteger _undellocedMaxCount;
+}
 
 +(instancetype)shareInstance;
 
@@ -1189,6 +1193,37 @@ int smartFunction(id target, SEL cmd, ...) {
         [NSObject sops_swizzleMethod:@selector(setValue:forUndefinedKey:) withMethod:@selector(sop_setValue:forUndefinedKey:) error:&error];
         LOG_Error
     }
+    
+    if (type&SafeObjectProxyType_DanglingPointer) {
+        [NSObject sops_swizzleMethod:NSSelectorFromString(@"dealloc") withMethod:@selector(sdp_danglingPointer_dealloc) error:&error];
+        LOG_Error
+    }
 }
+
++(void)addSafeDanglingPointerClassNames:(NSArray<NSString*>*)classNames{
+    [SafeObjectProxy addSafeDanglingPointerClassNames:classNames undellocedMaxCount:100];
+}
+
++(void)addSafeDanglingPointerClassNames:(NSArray<NSString *> *)classNames undellocedMaxCount:(NSInteger)undellocedMaxCount{
+    NSMutableArray *tmpArr = [[NSMutableArray alloc] init];
+    if ([SafeObjectProxy shareInstance]->_danglingPointerClassNames) {
+        [tmpArr addObjectsFromArray:[SafeObjectProxy shareInstance]->_danglingPointerClassNames];
+    }
+    if (classNames) {
+        [tmpArr addObjectsFromArray:classNames];
+    }
+    [SafeObjectProxy shareInstance]->_danglingPointerClassNames=[NSArray arrayWithArray:tmpArr];
+    
+    [SafeObjectProxy shareInstance]->_undellocedMaxCount=undellocedMaxCount;
+}
+
+-(NSArray*)danglingPointerClassNames{
+    return _danglingPointerClassNames;
+}
+
+-(NSInteger)undellocedMaxCount{
+    return _undellocedMaxCount;
+}
+
 @end
 
