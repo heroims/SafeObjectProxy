@@ -47,6 +47,8 @@
     [ViewController aaaaaaa];
 
     NSLog(@"3");
+    
+    [((NSString*)[NSNull null]) substringToIndex:10];
     // Do any additional setup after loading the view.
 }
 

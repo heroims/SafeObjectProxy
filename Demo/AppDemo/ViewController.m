@@ -33,6 +33,9 @@
     NSLog(@"2");
     [ViewController aaaaaaa];
     NSLog(@"3");
+    [((NSString*)[NSNull null]) substringToIndex:10];
+    [((NSString*)nil) substringToIndex:10];
+
 
 }
 
